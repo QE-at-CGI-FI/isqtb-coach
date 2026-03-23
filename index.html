@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ISTQB Advanced Test Manager Coach</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f4f6f9;
+      --card: #ffffff;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --success: #16a34a;
+      --success-bg: #dcfce7;
+      --error: #dc2626;
+      --error-bg: #fee2e2;
+      --neutral: #6b7280;
+      --border: #e5e7eb;
+      --text: #111827;
+      --text-muted: #6b7280;
+      --radius: 10px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 24px 16px;
+    }
+
+    header {
+      width: 100%;
+      max-width: 760px;
+      margin-bottom: 24px;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    header p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.15s, opacity 0.15s;
+    }
+
+    .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    .btn-primary   { background: var(--primary); color: #fff; }
+    .btn-primary:not(:disabled):hover { background: var(--primary-hover); }
+    .btn-outline   { background: #fff; color: var(--text); border: 1px solid var(--border); }
+    .btn-outline:not(:disabled):hover { background: var(--bg); }
+    .btn-danger    { background: #fff; color: var(--error); border: 1px solid #fca5a5; }
+    .btn-danger:not(:disabled):hover  { background: var(--error-bg); }
+
+    #main {
+      width: 100%;
+      max-width: 760px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* ── empty state ── */
+    .empty-state {
+      background: var(--card);
+      border: 2px dashed var(--border);
+      border-radius: var(--radius);
+      padding: 48px 24px;
+      text-align: center;
+      color: var(--text-muted);
+    }
+    .empty-state h2 { font-size: 1.125rem; margin-bottom: 8px; color: var(--text); }
+    .empty-state p  { font-size: 0.875rem; margin-bottom: 20px; }
+
+    /* ── progress bar ── */
+    .progress-bar-wrap {
+      background: var(--border);
+      border-radius: 99px;
+      height: 8px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 99px;
+      transition: width 0.3s ease;
+    }
+
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    /* ── stats row ── */
+    .stats {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .stat-card {
+      flex: 1;
+      min-width: 100px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px;
+      text-align: center;
+    }
+
+    .stat-card .val {
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .stat-card .lbl {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    .val-correct { color: var(--success); }
+    .val-wrong   { color: var(--error); }
+    .val-remain  { color: var(--primary); }
+
+    /* ── question card ── */
+    .question-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+
+    .question-number {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .question-text {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .option {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 12px 16px;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      text-align: left;
+      background: #fff;
+      width: 100%;
+    }
+
+    .option:not(:disabled):hover {
+      border-color: var(--primary);
+      background: #eff6ff;
+    }
+
+    .option:disabled { cursor: default; }
+
+    .option.correct  { border-color: var(--success); background: var(--success-bg); }
+    .option.wrong    { border-color: var(--error);   background: var(--error-bg); }
+    .option.revealed { border-color: var(--success); background: var(--success-bg); }
+
+    .option-label {
+      font-weight: 600;
+      min-width: 22px;
+      color: var(--text-muted);
+    }
+
+    .option.correct  .option-label,
+    .option.revealed .option-label { color: var(--success); }
+    .option.wrong    .option-label { color: var(--error); }
+    .option.selected-multi { border-color: var(--primary); background: #eff6ff; }
+
+    /* ── feedback ── */
+    .feedback {
+      margin-top: 20px;
+      padding: 16px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .feedback.correct { background: var(--success-bg); border-left: 4px solid var(--success); }
+    .feedback.wrong   { background: var(--error-bg);   border-left: 4px solid var(--error); }
+
+    .feedback-verdict {
+      font-weight: 700;
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+
+    .feedback.correct .feedback-verdict { color: var(--success); }
+    .feedback.wrong   .feedback-verdict { color: var(--error); }
+
+    .feedback-explanation { color: var(--text); }
+
+    /* ── next / done ── */
+    .card-footer {
+      margin-top: 20px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    /* ── completion card ── */
+    .completion-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 40px 28px;
+      text-align: center;
+    }
+
+    .completion-card h2 {
+      font-size: 1.5rem;
+      margin-bottom: 12px;
+    }
+
+    .completion-card p {
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      font-size: 0.9375rem;
+    }
+
+    .score-big {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--primary);
+    }
+
+    /* ── hidden ── */
+    .hidden { display: none !important; }
+
+    /* ── file input trick ── */
+    #file-input { display: none; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>ISTQB Advanced Test Manager Coach</h1>
+  <p>Practice questions for the ISTQB Advanced Level Test Manager certification</p>
+  <div class="toolbar">
+    <button class="btn btn-primary" onclick="triggerImport()">Import questions (JSON)</button>
+    <button class="btn btn-outline" id="btn-export" onclick="exportQuestions()" disabled>Export questions (JSON)</button>
+    <button class="btn btn-danger"  id="btn-reset"  onclick="resetSession()"    disabled>Reset session</button>
+  </div>
+  <input type="file" id="file-input" accept=".json,application/json" onchange="importFile(event)">
+</header>
+
+<div id="main">
+  <!-- empty state -->
+  <div class="empty-state" id="empty-state">
+    <h2>No questions loaded</h2>
+    <p>Import a JSON file to start practising, or load the built-in sample questions below.</p>
+    <button class="btn btn-primary" onclick="loadSample()">Load sample questions</button>
+  </div>
+
+  <!-- progress (hidden until questions loaded) -->
+  <div id="progress-section" class="hidden">
+    <div class="progress-bar-wrap">
+      <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+    <div class="progress-meta">
+      <span id="progress-text">0 / 0 answered</span>
+      <span id="progress-pct">0%</span>
+    </div>
+  </div>
+
+  <!-- stats (hidden until questions loaded) -->
+  <div class="stats hidden" id="stats-section">
+    <div class="stat-card">
+      <div class="val val-remain" id="stat-remain">0</div>
+      <div class="lbl">Remaining</div>
+    </div>
+    <div class="stat-card">
+      <div class="val val-correct" id="stat-correct">0</div>
+      <div class="lbl">Correct</div>
+    </div>
+    <div class="stat-card">
+      <div class="val val-wrong" id="stat-wrong">0</div>
+      <div class="lbl">Incorrect</div>
+    </div>
+    <div class="stat-card">
+      <div class="val" id="stat-total">0</div>
+      <div class="lbl">Total</div>
+    </div>
+  </div>
+
+  <!-- question card (hidden until active) -->
+  <div class="question-card hidden" id="question-card">
+    <div class="question-number" id="q-number"></div>
+    <div class="question-text"   id="q-text"></div>
+    <div class="options"         id="q-options"></div>
+    <div class="feedback hidden" id="q-feedback">
+      <div class="feedback-verdict"     id="fb-verdict"></div>
+      <div class="feedback-explanation" id="fb-explanation"></div>
+    </div>
+    <div class="card-footer">
+      <button class="btn btn-primary hidden" id="btn-next" onclick="nextQuestion()">Next question</button>
+    </div>
+  </div>
+
+  <!-- completion card (hidden until done) -->
+  <div class="completion-card hidden" id="completion-card">
+    <div class="score-big" id="final-score"></div>
+    <h2>Session complete!</h2>
+    <p id="final-detail"></p>
+    <button class="btn btn-primary" onclick="restartSession()">Start over</button>
+  </div>
+</div>
+
+<script>
+// ── State ──────────────────────────────────────────────────────────────────
+let questions   = [];      // all loaded questions
+let queue       = [];      // indices of unanswered questions (shuffled)
+let currentIdx  = null;    // index into `questions` of current question
+let answered    = {};      // { questionIndex: { chosen, correct } }
+let sessionCorrect = 0;
+let sessionWrong   = 0;
+
+// ── Sample questions (loaded from file) ────────────────────────────────────
+const SAMPLE_QUESTIONS_PLACEHOLDER = [
+  {
+    "id": 1,
+    "question": "A test manager is planning a large system integration test phase. Which of the following is the MOST important consideration when defining the entry criteria?",
+    "options": [
+      "All unit tests have been executed regardless of their outcome",
+      "The software under test is sufficiently stable to enable meaningful integration testing",
+      "All test cases for the integration phase have been reviewed and approved",
+      "The test environment matches the production environment exactly"
+    ],
+    "correct": 1,
+    "explanation": "Entry criteria should ensure the system is stable enough for meaningful testing. If the software is too unstable, integration testing will produce noise rather than signal — testers spend time on known defects rather than uncovering new ones. The other options are either too strict (exact production match) or not necessary preconditions (all unit tests executed regardless of outcome, all test cases approved before starting)."
+  },
+  {
+    "id": 2,
+    "question": "According to the ISTQB Advanced Test Manager syllabus, which technique is MOST appropriate for estimating test effort when historical data from similar projects is available?",
+    "options": [
+      "Wideband Delphi",
+      "Use-case point estimation",
+      "Metrics-based estimation",
+      "Three-point estimation"
+    ],
+    "correct": 2,
+    "explanation": "Metrics-based estimation uses historical data (e.g., defect density, test execution rates) from completed projects to predict effort for new ones. When reliable historical data is available it is the most objective approach. Wideband Delphi is expert-consensus-based (no historical data needed). Use-case points derive effort from functional complexity. Three-point estimation handles uncertainty but still relies on expert judgment rather than historical metrics."
+  },
+  {
+    "id": 3,
+    "question": "A test manager discovers mid-project that the regression test suite takes 48 hours to run, making it impossible to execute after every build. What is the BEST strategy?",
+    "options": [
+      "Remove test cases from the suite until runtime fits within the build cycle",
+      "Implement risk-based test prioritisation to create a shorter smoke/regression subset",
+      "Run the full regression suite only at major milestones and skip it otherwise",
+      "Automate the entire suite to reduce execution time to an acceptable level"
+    ],
+    "correct": 1,
+    "explanation": "Risk-based test prioritisation allows the team to execute the highest-value, highest-risk tests in every cycle (a 'smoke' or 'short regression' subset) while still running the full suite periodically. Simply removing tests loses coverage permanently. Skipping regression entirely increases risk. Automating everything is a long-term investment, not an immediate solution, and automation still takes time to run — it doesn't eliminate the 48-hour constraint."
+  },
+  {
+    "id": 4,
+    "question": "Which of the following BEST describes the purpose of a test policy in an organisation?",
+    "options": [
+      "To document the specific test techniques and tools to be used on each project",
+      "To define the principles, approach, and objectives of testing across the organisation",
+      "To provide detailed instructions for executing test cases",
+      "To specify the defect severity and priority classification scheme"
+    ],
+    "correct": 1,
+    "explanation": "A test policy is a high-level, organisational document that communicates the purpose, principles, and strategic objectives of testing. It answers 'why we test' and 'what we believe about testing'. It does NOT prescribe project-specific techniques (that's the test strategy/plan), execution instructions (that's test procedures), or operational schemes (those belong in project-level documents)."
+  },
+  {
+    "id": 5,
+    "question": "A defect is found in production that was not detected during testing. A stakeholder asks the test manager why testing did not find it. Which response BEST reflects the ISTQB view of testing and quality?",
+    "options": [
+      "Testing can never guarantee that all defects have been found; exhaustive testing is impossible",
+      "The tester responsible for that area failed to write adequate test cases",
+      "The defect was introduced after testing completed and is therefore not a test failure",
+      "Sufficient testing was performed and the defect is within acceptable risk tolerance"
+    ],
+    "correct": 0,
+    "explanation": "A fundamental ISTQB testing principle is that exhaustive testing is impossible — it is not feasible to test every combination of inputs, preconditions, and paths. Testing reduces risk but cannot eliminate it. Blaming an individual tester ignores systemic causes. Claiming the defect was introduced after testing — without evidence — is an unfounded deflection. Stating it falls within 'acceptable risk tolerance' may be true but does not explain why testing didn't find it, which was the question."
+  },
+  {
+    "id": 6,
+    "question": "When should a test manager escalate a risk that has materialised into an issue during a project?",
+    "options": [
+      "Only when the issue has caused a test to fail",
+      "When the issue cannot be resolved within the test team's authority or resources",
+      "After documenting the issue in the test log and waiting one full sprint",
+      "When the project manager requests a formal status update"
+    ],
+    "correct": 1,
+    "explanation": "Escalation is appropriate when the impact or resolution of an issue exceeds the test manager's authority, capacity, or resources — for example, when a blocking defect requires a business decision to descope, or when additional resources must be allocated. Waiting for a sprint cycle or for the PM to ask introduces unnecessary delay. Escalation is not limited to test failures; any issue that threatens quality goals or schedule can warrant it."
+  },
+  {
+    "id": 7,
+    "question": "Which of the following is a key characteristic that distinguishes a test strategy from a test plan?",
+    "options": [
+      "The test strategy is written by the test team; the test plan is written by management",
+      "The test strategy defines the general approach to testing; the test plan details how that approach is applied to a specific project",
+      "The test strategy is produced at the end of testing; the test plan is produced at the start",
+      "The test strategy lists all test cases; the test plan lists all defects"
+    ],
+    "correct": 1,
+    "explanation": "A test strategy is a higher-level, often organisational or programme-level document that describes the general approach (techniques, types of testing, risk approach). A test plan is project-specific and translates the strategy into concrete activities, schedules, resources, and responsibilities for a particular release or project. The strategy answers 'how we test in general'; the plan answers 'how we will test this'."
+  },
+  {
+    "id": 8,
+    "question": "According to the ISTQB Advanced Test Manager syllabus, which of the following activities is the PRIMARY responsibility of the test manager during test execution?",
+    "options": [
+      "Executing all critical test cases personally to ensure quality",
+      "Monitoring progress, managing risks, and communicating status to stakeholders",
+      "Writing additional test cases to cover any gaps identified during execution",
+      "Reviewing all defect reports before they are submitted to the development team"
+    ],
+    "correct": 1,
+    "explanation": "During execution, the test manager's primary role is managerial: tracking progress against the plan, monitoring risks and their mitigation, removing impediments, and keeping stakeholders informed. Execution of individual test cases is done by testers. Writing additional test cases is a test analyst activity. While the test manager may be involved in high-level defect triage, reviewing every defect report is an operational activity that belongs to the test team."
+  }
+];
+
+// ── Import / Export ────────────────────────────────────────────────────────
+function triggerImport() {
+  document.getElementById('file-input').value = '';
+  document.getElementById('file-input').click();
+}
+
+function importFile(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    try {
+      const data = JSON.parse(e.target.result);
+      if (!Array.isArray(data) || data.length === 0) {
+        alert('Invalid format: expected a non-empty JSON array of questions.');
+        return;
+      }
+      loadQuestions(data);
+    } catch {
+      alert('Could not parse JSON file. Please check the file format.');
+    }
+  };
+  reader.readAsText(file);
+}
+
+function exportQuestions() {
+  if (questions.length === 0) return;
+  const blob = new Blob([JSON.stringify(questions, null, 2)], { type: 'application/json' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = 'istqb_questions.json';
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function loadSample() {
+  fetch('sample_questions.json')
+    .then(r => r.json())
+    .then(data => loadQuestions(data))
+    .catch(() => {
+      // Fallback if running without a server: use the embedded placeholder set
+      loadQuestions(SAMPLE_QUESTIONS_PLACEHOLDER);
+    });
+}
+
+// ── Session management ─────────────────────────────────────────────────────
+function loadQuestions(data) {
+  questions      = data;
+  answered       = {};
+  sessionCorrect = 0;
+  sessionWrong   = 0;
+  queue          = shuffle([...Array(questions.length).keys()]);
+
+  document.getElementById('empty-state').classList.add('hidden');
+  document.getElementById('completion-card').classList.add('hidden');
+  document.getElementById('btn-export').disabled = false;
+  document.getElementById('btn-reset').disabled  = false;
+
+  updateStats();
+  showNextQuestion();
+}
+
+function resetSession() {
+  if (!confirm('Reset your progress and start over with the same questions?')) return;
+  answered       = {};
+  sessionCorrect = 0;
+  sessionWrong   = 0;
+  queue          = shuffle([...Array(questions.length).keys()]);
+
+  document.getElementById('completion-card').classList.add('hidden');
+  updateStats();
+  showNextQuestion();
+}
+
+function restartSession() {
+  resetSession();
+}
+
+// ── Question display ───────────────────────────────────────────────────────
+function showNextQuestion() {
+  if (queue.length === 0) {
+    showCompletion();
+    return;
+  }
+
+  currentIdx = queue.shift();
+  const q    = questions[currentIdx];
+  const num  = Object.keys(answered).length + 1;
+
+  document.getElementById('q-number').textContent =
+    `Question ${num} of ${questions.length}`;
+  document.getElementById('q-text').textContent = q.question;
+
+  const labels  = ['A', 'B', 'C', 'D', 'E', 'F'];
+  const optsCtr = document.getElementById('q-options');
+  optsCtr.innerHTML = '';
+
+  const isMulti = Array.isArray(q.correct);
+
+  q.options.forEach((opt, i) => {
+    const btn       = document.createElement('button');
+    btn.className   = 'option';
+    btn.dataset.idx = i;
+    btn.innerHTML   = `<span class="option-label">${labels[i]}</span><span>${opt}</span>`;
+    if (isMulti) {
+      btn.onclick = () => toggleMultiOption(btn);
+    } else {
+      btn.onclick = () => selectAnswer(i);
+    }
+    optsCtr.appendChild(btn);
+  });
+
+  if (isMulti) {
+    // Add submit button for multi-select questions
+    const hint = document.createElement('p');
+    hint.id = 'multi-hint';
+    hint.style.cssText = 'font-size:0.8rem;color:var(--text-muted);margin-top:8px;';
+    hint.textContent = `Select ${q.correct.length} options, then click Submit.`;
+    optsCtr.after(hint);
+
+    const submitBtn = document.createElement('button');
+    submitBtn.id        = 'btn-submit-multi';
+    submitBtn.className = 'btn btn-primary';
+    submitBtn.style.cssText = 'margin-top:12px;';
+    submitBtn.textContent = 'Submit';
+    submitBtn.onclick   = () => submitMultiAnswer();
+    hint.after(submitBtn);
+  }
+
+  document.getElementById('q-feedback').classList.add('hidden');
+  document.getElementById('btn-next').classList.add('hidden');
+  document.getElementById('question-card').classList.remove('hidden');
+  document.getElementById('progress-section').classList.remove('hidden');
+  document.getElementById('stats-section').classList.remove('hidden');
+
+  updateStats();
+}
+
+function selectAnswer(chosenIdx) {
+  const q       = questions[currentIdx];
+  const correct = q.correct;  // single index
+  const isRight = chosenIdx === correct;
+
+  const buttons = document.querySelectorAll('.option');
+  buttons.forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === correct)   btn.classList.add('revealed');
+    if (i === chosenIdx && !isRight) { btn.classList.remove('revealed'); btn.classList.add('wrong'); }
+    if (i === chosenIdx && isRight)  { btn.classList.remove('revealed'); btn.classList.add('correct'); }
+  });
+
+  answered[currentIdx] = { chosen: chosenIdx, correct: isRight };
+  if (isRight) sessionCorrect++; else sessionWrong++;
+
+  showFeedback(isRight, q.explanation);
+}
+
+function toggleMultiOption(btn) {
+  btn.classList.toggle('selected-multi');
+  // visual cue: bold border when selected
+  if (btn.classList.contains('selected-multi')) {
+    btn.style.borderColor = 'var(--primary)';
+    btn.style.background  = '#eff6ff';
+  } else {
+    btn.style.borderColor = '';
+    btn.style.background  = '';
+  }
+}
+
+function submitMultiAnswer() {
+  const q = questions[currentIdx];
+  const correctSet = new Set(q.correct);
+
+  const buttons = document.querySelectorAll('.option');
+  const chosen  = new Set();
+  buttons.forEach((btn, i) => {
+    if (btn.classList.contains('selected-multi')) chosen.add(i);
+  });
+
+  const isRight = chosen.size === correctSet.size &&
+                  [...chosen].every(i => correctSet.has(i));
+
+  // Remove submit button and hint
+  const sb = document.getElementById('btn-submit-multi');
+  const mh = document.getElementById('multi-hint');
+  if (sb) sb.remove();
+  if (mh) mh.remove();
+
+  buttons.forEach((btn, i) => {
+    btn.disabled = true;
+    btn.style.borderColor = '';
+    btn.style.background  = '';
+    if (correctSet.has(i))  btn.classList.add('revealed');
+    if (chosen.has(i) && !correctSet.has(i)) { btn.classList.remove('revealed'); btn.classList.add('wrong'); }
+    if (chosen.has(i) &&  correctSet.has(i)) { btn.classList.remove('revealed'); btn.classList.add('correct'); }
+  });
+
+  answered[currentIdx] = { chosen: [...chosen], correct: isRight };
+  if (isRight) sessionCorrect++; else sessionWrong++;
+
+  showFeedback(isRight, q.explanation);
+}
+
+function showFeedback(isRight, explanation) {
+  const fb = document.getElementById('q-feedback');
+  fb.className = `feedback ${isRight ? 'correct' : 'wrong'}`;
+  document.getElementById('fb-verdict').textContent = isRight ? 'Correct!' : 'Incorrect';
+  document.getElementById('fb-explanation').textContent = explanation || 'No explanation provided.';
+  fb.classList.remove('hidden');
+  document.getElementById('btn-next').classList.remove('hidden');
+  updateStats();
+}
+
+function nextQuestion() {
+  if (queue.length === 0) {
+    showCompletion();
+  } else {
+    showNextQuestion();
+  }
+}
+
+function showCompletion() {
+  document.getElementById('question-card').classList.add('hidden');
+  const total = questions.length;
+  const pct   = total > 0 ? Math.round((sessionCorrect / total) * 100) : 0;
+  document.getElementById('final-score').textContent  = `${pct}%`;
+  document.getElementById('final-detail').textContent =
+    `You answered ${sessionCorrect} out of ${total} questions correctly (${sessionWrong} incorrect).`;
+  document.getElementById('completion-card').classList.remove('hidden');
+  updateStats();
+}
+
+// ── Stats & Progress ───────────────────────────────────────────────────────
+function updateStats() {
+  const total    = questions.length;
+  const done     = Object.keys(answered).length;
+  const remain   = total - done;
+  const pct      = total > 0 ? Math.round((done / total) * 100) : 0;
+
+  document.getElementById('stat-total').textContent   = total;
+  document.getElementById('stat-remain').textContent  = remain;
+  document.getElementById('stat-correct').textContent = sessionCorrect;
+  document.getElementById('stat-wrong').textContent   = sessionWrong;
+
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-text').textContent  = `${done} / ${total} answered`;
+  document.getElementById('progress-pct').textContent   = pct + '%';
+}
+
+// ── Utility ────────────────────────────────────────────────────────────────
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+  return arr;
+}
+</script>
+</body>
+</html>
