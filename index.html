@@ -288,8 +288,8 @@
   <h1>ISTQB Advanced Test Manager Coach</h1>
   <p>Practice questions for the ISTQB Advanced Level Test Manager certification</p>
   <div class="toolbar">
-    <button class="btn btn-primary" onclick="triggerImport()">Import questions (JSON)</button>
-    <button class="btn btn-outline" id="btn-export" onclick="exportQuestions()" disabled>Export questions (JSON)</button>
+    <button class="btn btn-primary" onclick="triggerImport()">Import session (JSON)</button>
+    <button class="btn btn-outline" id="btn-export" onclick="exportSession()" disabled>Save session (JSON)</button>
     <button class="btn btn-danger"  id="btn-reset"  onclick="resetSession()"    disabled>Reset session</button>
   </div>
   <input type="file" id="file-input" accept=".json,application/json" onchange="importFile(event)">
@@ -379,11 +379,17 @@ function importFile(event) {
   reader.onload = (e) => {
     try {
       const data = JSON.parse(e.target.result);
-      if (!Array.isArray(data) || data.length === 0) {
-        alert('Invalid format: expected a non-empty JSON array of questions.');
+      // Session file saved by this app
+      if (data && typeof data === 'object' && !Array.isArray(data) && data._sessionVersion) {
+        restoreSession(data);
         return;
       }
-      loadQuestions(data);
+      // Plain questions array (legacy / external)
+      if (Array.isArray(data) && data.length > 0) {
+        loadQuestions(data);
+        return;
+      }
+      alert('Invalid format: expected a saved session file or a non-empty JSON array of questions.');
     } catch {
       alert('Could not parse JSON file. Please check the file format.');
     }
@@ -391,15 +397,53 @@ function importFile(event) {
   reader.readAsText(file);
 }
 
-function exportQuestions() {
+function exportSession() {
   if (questions.length === 0) return;
-  const blob = new Blob([JSON.stringify(questions, null, 2)], { type: 'application/json' });
+  // If user is mid-question (not yet answered), put it back at the front of the queue
+  const queueToSave = (currentIdx !== null && !(String(currentIdx) in answered) && !(currentIdx in answered))
+    ? [currentIdx, ...queue]
+    : [...queue];
+  const session = {
+    _sessionVersion: 1,
+    savedAt: new Date().toISOString(),
+    questions,
+    answered,
+    queue: queueToSave,
+    sessionCorrect,
+    sessionWrong
+  };
+  const blob = new Blob([JSON.stringify(session, null, 2)], { type: 'application/json' });
   const url  = URL.createObjectURL(blob);
   const a    = document.createElement('a');
   a.href     = url;
-  a.download = 'istqb_questions.json';
+  a.download = `istqb_session_${new Date().toISOString().slice(0, 10)}.json`;
   a.click();
   URL.revokeObjectURL(url);
+}
+
+function restoreSession(session) {
+  if (!Array.isArray(session.questions) || session.questions.length === 0) {
+    alert('Session file is missing questions data.');
+    return;
+  }
+  questions      = session.questions;
+  answered       = session.answered       || {};
+  queue          = session.queue          || [];
+  sessionCorrect = session.sessionCorrect || 0;
+  sessionWrong   = session.sessionWrong   || 0;
+  currentIdx     = null;
+
+  document.getElementById('empty-state').classList.add('hidden');
+  document.getElementById('completion-card').classList.add('hidden');
+  document.getElementById('btn-export').disabled = false;
+  document.getElementById('btn-reset').disabled  = false;
+
+  updateStats();
+  if (queue.length > 0) {
+    showNextQuestion();
+  } else {
+    showCompletion();
+  }
 }
 
 function loadSample() {
