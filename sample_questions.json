@@ -14,7 +14,7 @@
   },
   {
     "id": 2,
-    "question": "Which of the following MOST accurately defines the goal of test monitoring?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "Which of the following MOST accurately defines the goal of test monitoring?  ",
     "options": [
       "Test monitoring compares the actual test progress against the planned progress.",
       "Test monitoring compares the actual results against the expected results.",
@@ -53,7 +53,7 @@
   },
   {
     "id": 5,
-    "question": "A company is transitioning from a sequential development process to a hybrid software development model that combines agile sprints with phase-based release cycles. The test team is having difficulty adjusting to the shorter iterations and continuous testing cycles. Which of the following test management activities is MOST IMPORTANT in this situation?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "A company is transitioning from a sequential development process to a hybrid software development model that combines agile sprints with phase-based release cycles. The test team is having difficulty adjusting to the shorter iterations and continuous testing cycles. Which of the following test management activities is MOST IMPORTANT in this situation?  ",
     "options": [
       "Coaching and mentoring the test team on continuous integration (CI) and agile testing practices to support the transition to agile approaches.",
       "Extend release cycles to maintain the usual testing process and ensure coverage.",
@@ -79,7 +79,7 @@
   },
   {
     "id": 7,
-    "question": "You are joining a long-running project as a test manager, which releases new features and bug fixes for a web shop on a daily basis. Since your predecessor has already left the company, you are working out which combination of test management activities is BEST suited to the project in the short term in order to continue to ensure stakeholder satisfaction and the success of the project in a stable and continuous manner. Which two test management activities do you choose?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "You are joining a long-running project as a test manager, which releases new features and bug fixes for a web shop on a daily basis. Since your predecessor has already left the company, you are working out which combination of test management activities is BEST suited to the project in the short term in order to continue to ensure stakeholder satisfaction and the success of the project in a stable and continuous manner. Which two test management activities do you choose?  ",
     "options": [
       "Test planning should include a retrospective after the rollout to identify potential weaknesses and problems so that long-term strategies can be developed to reduce risks.",
       "The efficiency of the testing process is an important factor in test planning. Therefore, especially in the context of short iteration cycles, test automation for regression testing should be expanded so that the time frame can be adhered to.",
@@ -96,7 +96,7 @@
   },
   {
     "id": 8,
-    "question": "Assume you are in a project that develops safety-critical software for a medical device. The software must comply with standards like the IEC 62304 standard and FDA regulations. The project is following an Agile methodology with two-week sprints. The test team consists of four onsite testers and six offsite testers. The organization uses a cloud-based DevOps toolchain as the main tool for CI/CD and test automation. The project is in the maintenance phase and starting now will require frequent regression testing due to defect fixes and feature enhancements. The project has a continuous risk management process in place, which involves identifying, assessing, and mitigating any new or existing risks associated with the software changes. Which of the following test management activities BEST emphasizes the specific focus of this project?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "Assume you are in a project that develops safety-critical software for a medical device. The software must comply with standards like the IEC 62304 standard and FDA regulations. The project is following an Agile methodology with two-week sprints. The test team consists of four onsite testers and six offsite testers. The organization uses a cloud-based DevOps toolchain as the main tool for CI/CD and test automation. The project is in the maintenance phase and starting now will require frequent regression testing due to defect fixes and feature enhancements. The project has a continuous risk management process in place, which involves identifying, assessing, and mitigating any new or existing risks associated with the software changes. Which of the following test management activities BEST emphasizes the specific focus of this project?  ",
     "options": [
       "Developing a separate risk management plan to identify, assess, prioritize, and reduce risks.",
       "Developing a communication and coordination concept for cooperation between onsite and offsite testers.",
@@ -122,7 +122,7 @@
   },
   {
     "id": 10,
-    "question": "As a test manager, you create a spreadsheet with rows for the system components and columns for their failure modes, their risk likelihood and risk impact. You invite the system architects and business representatives to jointly fill in the system components and failure modes based on their expertise. Which risk identification technique are you applying with this procedure?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "As a test manager, you create a spreadsheet with rows for the system components and columns for their failure modes, their risk likelihood and risk impact. You invite the system architects and business representatives to jointly fill in the system components and failure modes based on their expertise. Which risk identification technique are you applying with this procedure?  ",
     "options": [
       "Expert interviews",
       "Checklists",
@@ -135,7 +135,7 @@
   },
   {
     "id": 11,
-    "question": "Risks have been identified for a project and analyzed using a quantitative method, with the following results for risk likelihood and risk impact. Risk ID Description Risk Risk Impact Likelihood A The application may not suit the 40% 1,500,000 € functionality expected by the business B The test environment may not be 20% 500,000 € available in time for testing C Users may not understand system 90% 100,000 € documentation D The test manager may not have enough 10% 6,000,000 € time for this project Which set of testing activities would be the best to mitigate these risks?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "Risks have been identified for a project and analyzed using a quantitative method, with the following results for risk likelihood and risk impact. Risk ID Description Risk Risk Impact Likelihood A The application may not suit the 40% 1,500,000 € functionality expected by the business B The test environment may not be 20% 500,000 € available in time for testing C Users may not understand system 90% 100,000 € documentation D The test manager may not have enough 10% 6,000,000 € time for this project Which set of testing activities would be the best to mitigate these risks?  ",
     "options": [
       "Address risk A as a high priority by testing an early prototype with business stakeholders, then address risk C by introducing reviews. No testing is planned to mitigate risks B and D.",
       "Execute tests addressing risk A by documentation review, and risk C with black-box testing. Then, address risks B and D with white-box testing.",
@@ -161,7 +161,7 @@
   },
   {
     "id": 13,
-    "question": "Your team is developing a new major version of a mobile application which graphically displays the timetable of various public transport organizations on a common user interface. Your team is following an Agile SDLC with fast iterations and releases. Requirements are rather informal, often collected from user feedback and development. The organizational test strategy requires risk- based testing. To make the risk analysis proceed quickly, you want to involve the members of the Agile team who are familiar with the main risk areas of usability, compatibility, portability, and performance. Which technique would you recommend using in this situation?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "Your team is developing a new major version of a mobile application which graphically displays the timetable of various public transport organizations on a common user interface. Your team is following an Agile SDLC with fast iterations and releases. Requirements are rather informal, often collected from user feedback and development. The organizational test strategy requires risk- based testing. To make the risk analysis proceed quickly, you want to involve the members of the Agile team who are familiar with the main risk areas of usability, compatibility, portability, and performance. Which technique would you recommend using in this situation?  ",
     "options": [
       "Hazard analysis",
       "Pragmatic Risk Analysis and Management",
@@ -187,7 +187,7 @@
   },
   {
     "id": 15,
-    "question": "Assume you are a member of a project that develops a software product for the banking sector. You are responsible for analyzing the organizational test strategy and the project context to choose the appropriate test approach. You consider the following factors: • The project has a tight budget and a fixed deadline, which means that you must optimize the test effort and avoid unnecessary costs and delays. • The customer has provided detailed requirements and expects high quality and reliability from the product, which means that you must ensure that the product meets the customer´s expectations and complies with the specifications. • The project uses an Agile SDLC model with frequent releases and feedback cycles, which means that you must adapt to changing requirements and deliver test results in short iterations. • The test team consists of four testers with different levels of experience and skills, which means that you must assign the test tasks according to the testers’ capabilities and provide guidance and support when needed. • The test infrastructure is limited and requires manual configuration and maintenance, which means that you must plan and manage the test environment and resources carefully and efficiently. • The product has several interfaces with other systems that need to be tested, which means that you must coordinate and integrate the test activities with the other stakeholders and ensure the compatibility and interoperability of the products. Which of the following test approaches would be most appropriate for this project?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "Assume you are a member of a project that develops a software product for the banking sector. You are responsible for analyzing the organizational test strategy and the project context to choose the appropriate test approach. You consider the following factors: • The project has a tight budget and a fixed deadline, which means that you must optimize the test effort and avoid unnecessary costs and delays. • The customer has provided detailed requirements and expects high quality and reliability from the product, which means that you must ensure that the product meets the customer´s expectations and complies with the specifications. • The project uses an Agile SDLC model with frequent releases and feedback cycles, which means that you must adapt to changing requirements and deliver test results in short iterations. • The test team consists of four testers with different levels of experience and skills, which means that you must assign the test tasks according to the testers’ capabilities and provide guidance and support when needed. • The test infrastructure is limited and requires manual configuration and maintenance, which means that you must plan and manage the test environment and resources carefully and efficiently. • The product has several interfaces with other systems that need to be tested, which means that you must coordinate and integrate the test activities with the other stakeholders and ensure the compatibility and interoperability of the products. Which of the following test approaches would be most appropriate for this project?  ",
     "options": [
       "Risk-based testing to prioritize the most critical and complex features and scenarios, and to allocate the test resources accordingly.",
       "Model-based testing to generate test cases and test data automatically from the requirements, and to measure the test coverage and quality.",
@@ -200,7 +200,7 @@
   },
   {
     "id": 16,
-    "question": "Assume you are in a project that develops a web application for online banking. The project is customer specific and has strict requirements on security, performance, and reliability. The project uses an Agile SDLC model with two-week sprints and frequent releases. The test team consists of four testers with different levels of experience and skills. The test infrastructure is cloud-based and supports various browsers and devices. The test data is provided by the customer and needs to be anonymized before use. Based only on the scenario, which of the following test approaches would be most appropriate for your project?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "Assume you are in a project that develops a web application for online banking. The project is customer specific and has strict requirements on security, performance, and reliability. The project uses an Agile SDLC model with two-week sprints and frequent releases. The test team consists of four testers with different levels of experience and skills. The test infrastructure is cloud-based and supports various browsers and devices. The test data is provided by the customer and needs to be anonymized before use. Based only on the scenario, which of the following test approaches would be most appropriate for your project?  ",
     "options": [
       "Testing will be done by the whole team using three test levels: unit testing and integration testing, where test cases are jointly created and performed by the developers and the testers grouped in pairs, and system testing where the test cases will be created and performed by the four testers. In unit and integration testing level, white-box testing is used aiming at 100% automation. In all test levels risk-based testing will be used to create and prioritize test cases. For system testing the testers will use all appropriate test techniques to cover acceptance criteria.",
       "Testing will be done by the whole team using four test levels: unit testing, integration testing, system testing and acceptance testing. In unit and integration testing as well as in system testing level, model-based testing will be used thoroughly with a focus on state transition testing. Code coverage is measured while executing the tests and aimed at 90% branch coverage. For acceptance testing the sprint demo is therefore sufficient.",
@@ -226,7 +226,7 @@
   },
   {
     "id": 18,
-    "question": "You are the test manager of a project that develops a mobile app for online shopping. The project is under development and there are high expectations on usability, functionality, and compatibility. The project uses a hybrid SDLC model with four-month releases and monthly iterations. The test team consists of six testers with various skills and experience. The test infrastructure is cloud-based and supports various devices and operating systems. The test data is generated by a test data management tool and needs to be validated before use. Which of the following project test objectives is S.M.A.R.T. according to the syllabus text?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "You are the test manager of a project that develops a mobile app for online shopping. The project is under development and there are high expectations on usability, functionality, and compatibility. The project uses a hybrid SDLC model with four-month releases and monthly iterations. The test team consists of six testers with various skills and experience. The test infrastructure is cloud-based and supports various devices and operating systems. The test data is generated by a test data management tool and needs to be validated before use. Which of the following project test objectives is S.M.A.R.T. according to the syllabus text?  ",
     "options": [
       "Checking the usability of the app by measuring the time it takes to complete a purchase with the objective that 90% of users can complete their purchase within 3 minutes within the next two months.",
       "Enhancing the level of automated tests by 50% within the next two weeks with the objective of significantly accelerating regression testing and finding more defects to improve user acceptance.",
@@ -252,7 +252,7 @@
   },
   {
     "id": 20,
-    "question": "You, as a test consultant, are now responsible for test improvements in a critical project at a small regional bank. The project deals with digital transformation and will continue for two more years using an Agile approach. Since the Test Maturity Model integration (TMMi) is popular in the finance domain, the bank has asked you to use TMMi during your project test improvement activities. How would you go about using TMMi in the described context?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "You, as a test consultant, are now responsible for test improvements in a critical project at a small regional bank. The project deals with digital transformation and will continue for two more years using an Agile approach. Since the Test Maturity Model integration (TMMi) is popular in the finance domain, the bank has asked you to use TMMi during your project test improvement activities. How would you go about using TMMi in the described context?  ",
     "options": [
       "Make clear that model-based improvement using TMMi is not possible on a project level.",
       "Recommend that all TMMi level 2 and level 3 process areas be used for these improvement activities.",
@@ -265,7 +265,7 @@
   },
   {
     "id": 21,
-    "question": "Assume that you are working for an ambitious start-up that is developing a system which provides customized loyalty and rewards programs for small and medium-sized companies selling to web- based customers. The companies using the system are able to self-enroll on the system’s web store and can then create customized buttons for their websites. These buttons can then be used to allow their customers to enroll in the companies’ loyalty and rewards program. Each subsequent purchase earns points, and both companies and their customers can manage the program; for example, to determine the number of points required to receive a free product or service. Your employer’s marketing staff is heavily promoting the system by offering aggressive discounts on the first year’s fees to sign up inaugural companies. The marketing materials state that the service will be highly reliable and extremely fast for companies and their customers. Four months ago, the requirements had been completed and the development of the software was started. When analyzing the quality risks, the adaptation of the buttons was classified as the lowest risk, while registration was classified as the highest risk. As planned in the schedule, the first release was launched a month ago and companies and their customers could start registering. The system has now been in use by companies and their customers for a month. Your team has used a mix of risk-based testing, requirements-based testing, and reactive testing. You are now conducting a retrospective for the testing work. Which TWO of the following areas should most likely be considered in this retrospective?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "Assume that you are working for an ambitious start-up that is developing a system which provides customized loyalty and rewards programs for small and medium-sized companies selling to web- based customers. The companies using the system are able to self-enroll on the system’s web store and can then create customized buttons for their websites. These buttons can then be used to allow their customers to enroll in the companies’ loyalty and rewards program. Each subsequent purchase earns points, and both companies and their customers can manage the program; for example, to determine the number of points required to receive a free product or service. Your employer’s marketing staff is heavily promoting the system by offering aggressive discounts on the first year’s fees to sign up inaugural companies. The marketing materials state that the service will be highly reliable and extremely fast for companies and their customers. Four months ago, the requirements had been completed and the development of the software was started. When analyzing the quality risks, the adaptation of the buttons was classified as the lowest risk, while registration was classified as the highest risk. As planned in the schedule, the first release was launched a month ago and companies and their customers could start registering. The system has now been in use by companies and their customers for a month. Your team has used a mix of risk-based testing, requirements-based testing, and reactive testing. You are now conducting a retrospective for the testing work. Which TWO of the following areas should most likely be considered in this retrospective?  ",
     "options": [
       "Evaluating whether significant problems have been reported by users in button customization.",
       "Deciding if the project plan included all relevant project risks that affected delivery to early- adopter companies.",
@@ -282,7 +282,7 @@
   },
   {
     "id": 22,
-    "question": "You are a tester in an Agile software development team that has just completed an iteration. You are preparing for the retrospective meeting with the rest of the team. Which of the following activities is NOT part of a typical retrospective?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "You are a tester in an Agile software development team that has just completed an iteration. You are preparing for the retrospective meeting with the rest of the team. Which of the following activities is NOT part of a typical retrospective?  ",
     "options": [
       "Reviewing the test progress, defect detection, and test effectiveness metrics",
       "Identifying the root causes of the testing problems and generating improvement ideas",
@@ -308,7 +308,7 @@
   },
   {
     "id": 24,
-    "question": "You work for an international company producing hardware and software for telecom networks. Hardware and software development are carried out in separate business units. You are the test manager of one product line of network router software. In your product line, there is a long tradition of creating tightly integrated products using an incremental product lifecycle. The hardware business unit produces a new version every six months. Your software product line aims to have a new version of the software ready for each new hardware version. The software is developed in two-month increments. The business unit schedules are synchronized during design. Your team consists of 15 testers, who have been in the company for at least two years, but mostly a lot longer. New tests are developed by the most experienced test analysts. Variations of tests and the regression test sets are run by the rest of the team. The company’s management requires monthly progress reports listing the number of severe defects found, as well as the status of test execution. There have also been efforts to measure the efficiency of personnel in all business units. There have been problems keeping up with the hardware development schedule. You have heard that another similar software product line within your company is using an open- source tool for their test automation. They use it to automate roughly 50% of the tests and execute the remaining tests manually through the user interface of the software. You are requested to investigate if it would be possible to use this tool for your product line as well. What should be your key concern?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "You work for an international company producing hardware and software for telecom networks. Hardware and software development are carried out in separate business units. You are the test manager of one product line of network router software. In your product line, there is a long tradition of creating tightly integrated products using an incremental product lifecycle. The hardware business unit produces a new version every six months. Your software product line aims to have a new version of the software ready for each new hardware version. The software is developed in two-month increments. The business unit schedules are synchronized during design. Your team consists of 15 testers, who have been in the company for at least two years, but mostly a lot longer. New tests are developed by the most experienced test analysts. Variations of tests and the regression test sets are run by the rest of the team. The company’s management requires monthly progress reports listing the number of severe defects found, as well as the status of test execution. There have also been efforts to measure the efficiency of personnel in all business units. There have been problems keeping up with the hardware development schedule. You have heard that another similar software product line within your company is using an open- source tool for their test automation. They use it to automate roughly 50% of the tests and execute the remaining tests manually through the user interface of the software. You are requested to investigate if it would be possible to use this tool for your product line as well. What should be your key concern?  ",
     "options": [
       "How good is the support for the open-source tool?",
       "How is the usability of the new tool?",
@@ -334,7 +334,7 @@
   },
   {
     "id": 26,
-    "question": "For your current project, the available custom-built tool does not meet the requirements of your test automation effort. Within your company, there is an open-source test automation tool successfully being used for identical requirements. If you choose the same open-source tool, which of the following activities should happen as a first step when retiring the current custom-built tool in order to show the value of the new tool as quickly as possible?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "For your current project, the available custom-built tool does not meet the requirements of your test automation effort. Within your company, there is an open-source test automation tool successfully being used for identical requirements. If you choose the same open-source tool, which of the following activities should happen as a first step when retiring the current custom-built tool in order to show the value of the new tool as quickly as possible?  ",
     "options": [
       "The custom-built tool must be maintained and converted to the new environment.",
       "The regression test scripts of the custom-built tool must be converted to the new tool.",
@@ -360,7 +360,7 @@
   },
   {
     "id": 28,
-    "question": "Your management board is new to test metrics and asks you to explain the primary goal of using test metrics to them. Which of the following statements would you use to explain the benefit of test metrics to your management?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "Your management board is new to test metrics and asks you to explain the primary goal of using test metrics to them. Which of the following statements would you use to explain the benefit of test metrics to your management?  ",
     "options": [
       "Test metrics are indicators for test progress and assist to assess whether the test exit criteria or test objectives have been met.",
       "Test metrics are recommending corrective actions to achieve effective and efficient testing.",
@@ -373,7 +373,7 @@
   },
   {
     "id": 29,
-    "question": "You work for an international company that manufactures hardware and software for telecommunications networks. You are the test manager for a product line of network router software. The hardware development team delivers a new release every six months. The software is developed in two-month increments synchronized with the hardware development. The last overall release was delayed because critical interface errors in the software were found and fixed too late. The development management asks you to avoid further delays for upcoming releases or at least communicate them early on. You then plan to implement an improved, metrics-based reporting system based on prioritized user stories (P1, P2, P3) and a tiered product risk list (high, medium, low) for the test area. Which of the metrics listed are MOST IMPORTANT for your reporting in terms of the requirements of the development management?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "You work for an international company that manufactures hardware and software for telecommunications networks. You are the test manager for a product line of network router software. The hardware development team delivers a new release every six months. The software is developed in two-month increments synchronized with the hardware development. The last overall release was delayed because critical interface errors in the software were found and fixed too late. The development management asks you to avoid further delays for upcoming releases or at least communicate them early on. You then plan to implement an improved, metrics-based reporting system based on prioritized user stories (P1, P2, P3) and a tiered product risk list (high, medium, low) for the test area. Which of the metrics listed are MOST IMPORTANT for your reporting in terms of the requirements of the development management?  ",
     "options": [
       "Defect metrics: Evaluation of defect priority and source of the defect to report which user stories are faulty and need to be tested more thoroughly.",
       "Test status/coverage metrics per user story, sorted by story priority (P1 to P3), to show which important user stories will be the focus in the coming cycles or are not yet sufficiently covered.",
@@ -390,7 +390,7 @@
   },
   {
     "id": 30,
-    "question": "You are the test manager of a software project that uses a document-centric sequential development model and involves developing a desktop application for a banking system. The project has a large and hierarchical team that works with multiple stakeholders. The project has a low level of uncertainty and complexity due to the stable and well-defined requirements and technology. The project also has strict quality and security standards to comply with the legal regulations of the banking industry. What are the MOST suitable metrics that you would use to analyze the test results and create test reports that empower stakeholders to make decisions?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "You are the test manager of a software project that uses a document-centric sequential development model and involves developing a desktop application for a banking system. The project has a large and hierarchical team that works with multiple stakeholders. The project has a low level of uncertainty and complexity due to the stable and well-defined requirements and technology. The project also has strict quality and security standards to comply with the legal regulations of the banking industry. What are the MOST suitable metrics that you would use to analyze the test results and create test reports that empower stakeholders to make decisions?  ",
     "options": [
       "Metrics related to product risks, defects, test progress, coverage, and costs and test effort.",
       "Metrics related to defects, test progress, coverage, and code coverage.",
@@ -433,7 +433,7 @@
   },
   {
     "id": 33,
-    "question": "You are the test manager of a software project that follows the sequential model. Historical effort data based on requirements from similar projects, are available. The project requirements and the scope are fixed and well defined. However, the team setup for this project has not been finalized yet. You need to estimate the test effort for the entire project based on the requirements specification document. Which of the following techniques or approaches would be most suitable for your context?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "You are the test manager of a software project that follows the sequential model. Historical effort data based on requirements from similar projects, are available. The project requirements and the scope are fixed and well defined. However, the team setup for this project has not been finalized yet. You need to estimate the test effort for the entire project based on the requirements specification document. Which of the following techniques or approaches would be most suitable for your context?  ",
     "options": [
       "Estimation based on ratios.",
       "Planning Poker",
@@ -459,7 +459,7 @@
   },
   {
     "id": 35,
-    "question": "The diagram shows an incomplete defect workflow, where two states (states X and Y) have yet to be named appropriately. Which of the following would correctly complete the workflow?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "The diagram shows an incomplete defect workflow, where two states (states X and Y) have yet to be named appropriately. Which of the following would correctly complete the workflow?  ",
     "options": [
       "STATE X – RETESTED STATE Y – RE-OPENED",
       "STATE X – REJECTED STATE Y – CLARIFICATION",
@@ -498,7 +498,7 @@
   },
   {
     "id": 38,
-    "question": "Nowadays multiple software development methodologies are used. Different methodologies in the SDLC call for an adapted test approach. You are a test manager in a software development project which operates in a hybrid environment. Which of the following is MOST relevant regarding defect management in this context?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "Nowadays multiple software development methodologies are used. Different methodologies in the SDLC call for an adapted test approach. You are a test manager in a software development project which operates in a hybrid environment. Which of the following is MOST relevant regarding defect management in this context?  ",
     "options": [
       "All teams use the same defect management tool, whatever their methodology is.",
       "Frequency of the defect management committee meetings should be determined by the largest team.",
@@ -541,7 +541,7 @@
   },
   {
     "id": 41,
-    "question": "Your organization has decided that it aims to improve its test and development process by reducing the number of defects introduced during development, based on already existing defect reports. Which of the following defect report information will be MOST useful in fulfilling this objective?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "Your organization has decided that it aims to improve its test and development process by reducing the number of defects introduced during development, based on already existing defect reports. Which of the following defect report information will be MOST useful in fulfilling this objective?  ",
     "options": [
       "The software lifecycle phases of detection, and removal of the defect.",
       "The defect’s root cause information.",
@@ -567,7 +567,7 @@
   },
   {
     "id": 43,
-    "question": "You are responsible for staffing a test team in a company that develops a brake system for a domestic motor vehicle manufacturer. While the development of the individual software components is carried out by several AGILE teams, the system development (consisting of software and hardware) is carried out according to the V-model in close cooperation with the Agile teams. The brake system is classified as safety-critical. The tests must be state of the art in design and documentation. The test analyst for the system tests leaves your company while the project is in the critical phase of the system test, and the position must be filled quickly. The main task of the test analyst was the test design of the integration test in cooperation with the AGILE teams and the requirement-based test design for the system tests. Based on the information above, what is the MINIMUM combination of skills and qualifications required for this position?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "You are responsible for staffing a test team in a company that develops a brake system for a domestic motor vehicle manufacturer. While the development of the individual software components is carried out by several AGILE teams, the system development (consisting of software and hardware) is carried out according to the V-model in close cooperation with the Agile teams. The brake system is classified as safety-critical. The tests must be state of the art in design and documentation. The test analyst for the system tests leaves your company while the project is in the critical phase of the system test, and the position must be filled quickly. The main task of the test analyst was the test design of the integration test in cooperation with the AGILE teams and the requirement-based test design for the system tests. Based on the information above, what is the MINIMUM combination of skills and qualifications required for this position?  ",
     "options": [
       "Black-box test techniques; communication skills; resilience; test documentation according to ISO",
       "Black-box test techniques; programming skills; resilience; AGILE certification",
@@ -593,7 +593,7 @@
   },
   {
     "id": 45,
-    "question": "As a test manager, you are responsible for assessing the existing skills of team members in order to compare them with the required technical and methodological skills. Which of the following approaches is NOT suitable for assessing existing technical and methodological skills?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "As a test manager, you are responsible for assessing the existing skills of team members in order to compare them with the required technical and methodological skills. Which of the following approaches is NOT suitable for assessing existing technical and methodological skills?  ",
     "options": [
       "You can see how knowledgeable the members of the test team are by giving them typical test tasks and evaluating how they solve them.",
       "Team members can be assessed using the Belbin team role model, which can then be used to determine their coverage of technical and methodological competencies.",
@@ -619,7 +619,7 @@
   },
   {
     "id": 47,
-    "question": "Leading a team requires specific skills. Which of the following statements about leading a test team is correct?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "Leading a team requires specific skills. Which of the following statements about leading a test team is correct?  ",
     "options": [
       "In a test team, willingness to help is more important than the ability to delegate.",
       "When a new test team forms, the ability to act with appreciation is the most important competence.",
@@ -632,7 +632,7 @@
   },
   {
     "id": 48,
-    "question": "Consider these categories of quality costs: 1. Prevention costs 2. Appraisal costs 3. Internal failure costs 4. External failure costs These are the examples of quality-related activities: A. Early acceptance testing for fast feedback B. Performing a product risk analysis C. Customer complaints about poor performance D. Long lag time from defect reporting to resolution during testing causing increased defect management inefficiency Which of the following CORRECTLY matches the categories of quality costs with their examples in software development?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "Consider these categories of quality costs: 1. Prevention costs 2. Appraisal costs 3. Internal failure costs 4. External failure costs These are the examples of quality-related activities: A. Early acceptance testing for fast feedback B. Performing a product risk analysis C. Customer complaints about poor performance D. Long lag time from defect reporting to resolution during testing causing increased defect management inefficiency Which of the following CORRECTLY matches the categories of quality costs with their examples in software development?  ",
     "options": [
       "1 – A 2 – B 3 – C 4 – D",
       "1 – B 2 – A 3 – D 4 – C",
@@ -645,7 +645,7 @@
   },
   {
     "id": 49,
-    "question": "You are managing the testing of a mature online dating service application. The application allows users to create profiles, match with compatible people, arrange social events, and block unwanted contacts. You need to calculate the cost-benefit of testing for this application. You have calculated the following costs of quality per defect: • Appraisal costs: $150 • Internal failure costs: $250 • External failure costs: $5,000 The average cost of detection and internal failure are calculated using the number of defects found prior to release, while the average costs of external is calculated using the number of defects found after release. Based on the above information, which of the following statements is correct for this application?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "You are managing the testing of a mature online dating service application. The application allows users to create profiles, match with compatible people, arrange social events, and block unwanted contacts. You need to calculate the cost-benefit of testing for this application. You have calculated the following costs of quality per defect: • Appraisal costs: $150 • Internal failure costs: $250 • External failure costs: $5,000 The average cost of detection and internal failure are calculated using the number of defects found prior to release, while the average costs of external is calculated using the number of defects found after release. Based on the above information, which of the following statements is correct for this application?  ",
     "options": [
       "The total cost of quality for this dating application is likely to be around $5,500, including prevention costs.",
       "Each defect found by testing offers the organization an average of $4,600 in savings in cost of quality.",
@@ -658,7 +658,7 @@
   },
   {
     "id": 50,
-    "question": "You are the test manager of a software project with a budget of €100,000 and a deadline of six months. You have estimated that: • the average defect prevention cost per defect is €150, • the average appraisal cost is €400, • the average internal defect cost per failure is €250, • and the average external defect cost per failure is €3,000. You have also determined the following project characteristics: • The requirements are unclear and can change frequently. • The technology used is new and unfamiliar to the development team. • The customer has high expectations in terms of quality and reliability. • The project has a tight schedule and scope. Based on the information, which of the following scenarios do NOT include a correct conclusion?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions Appendix: Additional Questions",
+    "question": "You are the test manager of a software project with a budget of €100,000 and a deadline of six months. You have estimated that: • the average defect prevention cost per defect is €150, • the average appraisal cost is €400, • the average internal defect cost per failure is €250, • and the average external defect cost per failure is €3,000. You have also determined the following project characteristics: • The requirements are unclear and can change frequently. • The technology used is new and unfamiliar to the development team. • The customer has high expectations in terms of quality and reliability. • The project has a tight schedule and scope. Based on the information, which of the following scenarios do NOT include a correct conclusion?   Appendix: Additional Questions",
     "options": [
       "Due to the ambiguity of the requirements, the average internal failure cost per defect doubles over the course of the project, resulting in an average saving of only €2100 per defect.",
       "Becoming familiar with the technology in use triples the cost of defect prevention, but these costs are not included in the average savings per defect. Therefore, the savings remain unaffected at €2,350.",
@@ -697,7 +697,7 @@
   },
   {
     "id": 53,
-    "question": "As a test manager you have to align your test management activities with the test types. s Which of the following is a test management activity for white-box testing, but not for functional or non- functional testing?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "As a test manager you have to align your test management activities with the test types. s Which of the following is a test management activity for white-box testing, but not for functional or non- functional testing?  ",
     "options": [
       "Define the scope.",
       "Determine the test tools and test environments.",
@@ -736,7 +736,7 @@
   },
   {
     "id": 56,
-    "question": "You join an existing project as a test manager. The development team is responsible for the enhancement and maintenance of an important product of the company’s flagship product. New versions are released on a regular basis. However, the product has a reputation for poor quality and customers frequently complain about the number of defects. You are now asked to look for improvements to the testing of the project. Which TWO of the following actions follow an analytical-based test process improvement approach that addresses the problem discussed in the scenario?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "You join an existing project as a test manager. The development team is responsible for the enhancement and maintenance of an important product of the company’s flagship product. New versions are released on a regular basis. However, the product has a reputation for poor quality and customers frequently complain about the number of defects. You are now asked to look for improvements to the testing of the project. Which TWO of the following actions follow an analytical-based test process improvement approach that addresses the problem discussed in the scenario?  ",
     "options": [
       "Implement a defect classification scheme for the origin and type of defects and classify the customer-reported defects according to this scheme.",
       "Compare the practices that your test team apply for test design and test implementation with the practices defined by the TMMi Model.",
@@ -779,7 +779,7 @@
   },
   {
     "id": 59,
-    "question": "You have to estimate the test effort in an Agile software development project. Which of the following statements is TRUE about test estimation in this context?Test Management, Advanced Level Sample Exam set A Sample Exam – Questions Question #A10a2 (1 Point) As a test manager you have to control time, effort and quality of your test project. Which of the following will most likely influence the duration, but NOT the effort of the testing activities?",
+    "question": "You have to estimate the test effort in an Agile software development project. Which of the following statements is TRUE about test estimation in this context?   Question #A10a2 (1 Point) As a test manager you have to control time, effort and quality of your test project. Which of the following will most likely influence the duration, but NOT the effort of the testing activities?",
     "options": [
       "Test estimation is done separately from development estimation and is based on the test levels and activities.",
       "Test estimation is done as part of development estimation and is based on the user stories and acceptance criteria.",
@@ -809,7 +809,7 @@
   },
   {
     "id": 61,
-    "question": "A key factor of the performance of a test team is their motivation. Which of the following is the best example of a motivating factor for a test team?2 #A10a and #A10b refers to the same LO. Test Management, Advanced Level Sample Exam set A Sample Exam – Questions",
+    "question": "A key factor of the performance of a test team is their motivation. Which of the following is the best example of a motivating factor for a test team?2 #A10a and #A10b refers to the same LO.   ",
     "options": [
       "Introduction of a labor wage agreement for all employees.",
       "Test activities and work products planned down to the last detail.",
