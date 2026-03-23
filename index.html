@@ -246,8 +246,10 @@
     .card-footer {
       margin-top: 20px;
       display: flex;
-      justify-content: flex-end;
+      justify-content: space-between;
+      gap: 8px;
     }
+    .card-footer > .btn:last-child { margin-left: auto; }
 
     /* ── completion card ── */
     .completion-card {
@@ -365,6 +367,7 @@
       <div class="feedback-explanation" id="fb-explanation"></div>
     </div>
     <div class="card-footer">
+      <button class="btn hidden" id="btn-back" onclick="goBack()">&#8592; Previous</button>
       <button class="btn btn-primary hidden" id="btn-next" onclick="nextQuestion()">Next question</button>
     </div>
   </div>
@@ -383,6 +386,7 @@
 let questions   = [];      // all loaded questions
 let queue       = [];      // indices of unanswered questions (shuffled)
 let currentIdx  = null;    // index into `questions` of current question
+let previousIdx = null;    // index of previous question (for going back to flag)
 let answered    = {};      // { questionIndex: { chosen, correct } }
 let flagged     = {};      // { questionIndex: true }
 let sessionCorrect = 0;
@@ -501,6 +505,7 @@ function resetSession() {
   if (!confirm('Reset your progress and start over with the same questions?')) return;
   answered       = {};
   flagged        = {};
+  previousIdx    = null;
   sessionCorrect = 0;
   sessionWrong   = 0;
   queue          = shuffle([...Array(questions.length).keys()]);
@@ -521,7 +526,8 @@ function showNextQuestion() {
     return;
   }
 
-  currentIdx = queue.shift();
+  previousIdx = currentIdx;
+  currentIdx  = queue.shift();
   const q    = questions[currentIdx];
   const num  = Object.keys(answered).length + 1;
 
@@ -576,6 +582,7 @@ function showNextQuestion() {
 
   document.getElementById('q-feedback').classList.add('hidden');
   document.getElementById('btn-next').classList.add('hidden');
+  document.getElementById('btn-back').classList.toggle('hidden', previousIdx === null);
   document.getElementById('question-card').classList.remove('hidden');
   document.getElementById('progress-section').classList.remove('hidden');
   document.getElementById('stats-section').classList.remove('hidden');
@@ -670,6 +677,67 @@ function toggleFlag() {
     flagBtn.classList.add('flagged');
     flagBtn.textContent = '\u2691 Flagged';
   }
+}
+
+function goBack() {
+  if (previousIdx === null) return;
+  queue.unshift(currentIdx);   // put current (unanswered) question back
+  currentIdx  = previousIdx;
+  previousIdx = null;
+  renderQuestionAnswered();
+}
+
+function renderQuestionAnswered() {
+  const q      = questions[currentIdx];
+  const ans    = answered[currentIdx];
+  const labels = ['A', 'B', 'C', 'D', 'E', 'F'];
+  const num    = Object.keys(answered).length;
+
+  document.getElementById('q-number').textContent = `Question ${num} of ${questions.length}`;
+  document.getElementById('q-text').textContent   = q.question;
+
+  const optsCtr = document.getElementById('q-options');
+  optsCtr.innerHTML = '';
+
+  const isMulti = Array.isArray(q.correct);
+
+  q.options.forEach((opt, i) => {
+    const btn       = document.createElement('button');
+    btn.className   = 'option';
+    btn.disabled    = true;
+    btn.innerHTML   = `<span class="option-label">${labels[i]}</span><span>${opt}</span>`;
+
+    if (isMulti) {
+      const correctSet = new Set(q.correct);
+      const chosenSet  = new Set(ans.chosen);
+      if (correctSet.has(i))                           btn.classList.add('revealed');
+      if (chosenSet.has(i) && !correctSet.has(i)) { btn.classList.remove('revealed'); btn.classList.add('wrong'); }
+      if (chosenSet.has(i) &&  correctSet.has(i)) { btn.classList.remove('revealed'); btn.classList.add('correct'); }
+    } else {
+      const correct = q.correct;
+      const chosen  = ans.chosen;
+      if (i === correct)                           btn.classList.add('revealed');
+      if (i === chosen && chosen !== correct) { btn.classList.remove('revealed'); btn.classList.add('wrong'); }
+      if (i === chosen && chosen === correct) { btn.classList.remove('revealed'); btn.classList.add('correct'); }
+    }
+    optsCtr.appendChild(btn);
+  });
+
+  const flagBtn = document.getElementById('btn-flag');
+  if (flagged[currentIdx]) {
+    flagBtn.classList.add('flagged');
+    flagBtn.textContent = '\u2691 Flagged';
+  } else {
+    flagBtn.classList.remove('flagged');
+    flagBtn.textContent = '\u2873 Flag';
+  }
+
+  showFeedback(ans.correct, q.explanation);
+  document.getElementById('btn-back').classList.add('hidden');
+  document.getElementById('question-card').classList.remove('hidden');
+  document.getElementById('progress-section').classList.remove('hidden');
+  document.getElementById('stats-section').classList.remove('hidden');
+  updateStats();
 }
 
 function nextQuestion() {
