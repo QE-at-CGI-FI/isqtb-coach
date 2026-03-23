@@ -275,6 +275,24 @@
       color: var(--primary);
     }
 
+    /* ── flag button ── */
+    .btn-flag {
+      background: #fff;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      font-size: 0.875rem;
+    }
+    .btn-flag:hover { background: #fffbeb; border-color: #f59e0b; color: #d97706; }
+    .btn-flag.flagged { background: #fffbeb; border-color: #f59e0b; color: #d97706; font-weight: 600; }
+
+    .question-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .question-header .question-number { margin-bottom: 0; }
+
     /* ── hidden ── */
     .hidden { display: none !important; }
 
@@ -336,7 +354,10 @@
 
   <!-- question card (hidden until active) -->
   <div class="question-card hidden" id="question-card">
-    <div class="question-number" id="q-number"></div>
+    <div class="question-header">
+      <div class="question-number" id="q-number"></div>
+      <button class="btn btn-flag" id="btn-flag" onclick="toggleFlag()">&#9873; Flag</button>
+    </div>
     <div class="question-text"   id="q-text"></div>
     <div class="options"         id="q-options"></div>
     <div class="feedback hidden" id="q-feedback">
@@ -363,6 +384,7 @@ let questions   = [];      // all loaded questions
 let queue       = [];      // indices of unanswered questions (shuffled)
 let currentIdx  = null;    // index into `questions` of current question
 let answered    = {};      // { questionIndex: { chosen, correct } }
+let flagged     = {};      // { questionIndex: true }
 let sessionCorrect = 0;
 let sessionWrong   = 0;
 
@@ -408,6 +430,7 @@ function exportSession() {
     savedAt: new Date().toISOString(),
     questions,
     answered,
+    flagged,
     queue: queueToSave,
     sessionCorrect,
     sessionWrong
@@ -428,6 +451,7 @@ function restoreSession(session) {
   }
   questions      = session.questions;
   answered       = session.answered       || {};
+  flagged        = session.flagged        || {};
   queue          = session.queue          || [];
   sessionCorrect = session.sessionCorrect || 0;
   sessionWrong   = session.sessionWrong   || 0;
@@ -459,6 +483,7 @@ function loadSample() {
 function loadQuestions(data) {
   questions      = data;
   answered       = {};
+  flagged        = {};
   sessionCorrect = 0;
   sessionWrong   = 0;
   queue          = shuffle([...Array(questions.length).keys()]);
@@ -475,6 +500,7 @@ function loadQuestions(data) {
 function resetSession() {
   if (!confirm('Reset your progress and start over with the same questions?')) return;
   answered       = {};
+  flagged        = {};
   sessionCorrect = 0;
   sessionWrong   = 0;
   queue          = shuffle([...Array(questions.length).keys()]);
@@ -537,6 +563,15 @@ function showNextQuestion() {
     submitBtn.textContent = 'Submit';
     submitBtn.onclick   = () => submitMultiAnswer();
     hint.after(submitBtn);
+  }
+
+  const flagBtn = document.getElementById('btn-flag');
+  if (flagged[currentIdx]) {
+    flagBtn.classList.add('flagged');
+    flagBtn.textContent = '\u2691 Flagged';
+  } else {
+    flagBtn.classList.remove('flagged');
+    flagBtn.textContent = '\u2873 Flag';
   }
 
   document.getElementById('q-feedback').classList.add('hidden');
@@ -621,6 +656,20 @@ function showFeedback(isRight, explanation) {
   fb.classList.remove('hidden');
   document.getElementById('btn-next').classList.remove('hidden');
   updateStats();
+}
+
+function toggleFlag() {
+  if (currentIdx === null) return;
+  const flagBtn = document.getElementById('btn-flag');
+  if (flagged[currentIdx]) {
+    delete flagged[currentIdx];
+    flagBtn.classList.remove('flagged');
+    flagBtn.textContent = '\u2873 Flag';
+  } else {
+    flagged[currentIdx] = true;
+    flagBtn.classList.add('flagged');
+    flagBtn.textContent = '\u2691 Flagged';
+  }
 }
 
 function nextQuestion() {
