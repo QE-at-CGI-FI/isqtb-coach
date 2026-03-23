@@ -70,6 +70,7 @@
     }
 
     .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+    .btn-sm { padding: 5px 10px; font-size: 0.8rem; }
 
     .btn-primary   { background: var(--primary); color: #fff; }
     .btn-primary:not(:disabled):hover { background: var(--primary-hover); }
@@ -328,9 +329,9 @@
       <option value="ISTQB-A-TTA">Advanced Technical Test Analyst</option>
       <option value="ISTQB-FL"   >Foundation Level</option>
     </select>
-    <button class="btn btn-primary" onclick="triggerImport()">Import session (JSON)</button>
-    <button class="btn btn-outline" id="btn-export" onclick="exportSession()" disabled>Save session (JSON)</button>
-    <button class="btn btn-danger"  id="btn-reset"  onclick="resetSession()"    disabled>Reset session</button>
+    <button class="btn btn-primary btn-sm" onclick="triggerImport()">Import session (JSON)</button>
+    <button class="btn btn-outline btn-sm" id="btn-export" onclick="exportSession()" disabled>Save session (JSON)</button>
+    <button class="btn btn-danger  btn-sm" id="btn-reset"  onclick="resetSession()"    disabled>Reset session</button>
   </div>
   <input type="file" id="file-input" accept=".json,application/json" onchange="importFile(event)">
 </header>
