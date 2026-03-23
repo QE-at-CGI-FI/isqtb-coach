@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1,
+    "question": "Which of the following BEST describes the primary purpose of a test automation architecture?",
+    "options": [
+      "To define the programming language and tooling used for test scripts",
+      "To provide a structured framework that supports maintainability, reusability, and scalability of automated tests",
+      "To specify the number of test engineers required for the automation effort",
+      "To determine the test execution schedule for automated test suites"
+    ],
+    "correct": 1,
+    "explanation": "TAE - A test automation architecture provides the structural foundation that enables maintainable, reusable, and scalable automated tests. It defines how components interact, how test data is managed, and how results are reported, independent of the specific tools or languages chosen.",
+    "source_qnum": "1"
+  }
+]

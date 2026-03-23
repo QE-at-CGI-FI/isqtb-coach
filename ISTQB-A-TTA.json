@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1,
+    "question": "Which of the following MOST accurately describes the purpose of static analysis in technical testing?",
+    "options": [
+      "To execute the code under simulated load conditions and observe its runtime behaviour",
+      "To examine code or other work products without executing them in order to find defects early",
+      "To measure the performance characteristics of the software under realistic user loads",
+      "To validate the software against its functional requirements using black-box techniques"
+    ],
+    "correct": 1,
+    "explanation": "TTA - Static analysis involves examining source code, models, or other work products without executing them. It enables early defect detection (e.g., coding standard violations, unreachable code, security vulnerabilities) and is typically performed using automated tools or peer review.",
+    "source_qnum": "1"
+  }
+]

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ISTQB Advanced Test Manager Coach</title>
+  <title>ISTQB Coach</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -298,6 +298,19 @@
     /* ── hidden ── */
     .hidden { display: none !important; }
 
+    /* ── cert selector ── */
+    .cert-select {
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      background: #fff;
+      color: var(--text);
+      cursor: pointer;
+    }
+    .cert-select:focus { outline: 2px solid var(--primary); outline-offset: 1px; }
+
     /* ── file input trick ── */
     #file-input { display: none; }
   </style>
@@ -305,9 +318,16 @@
 <body>
 
 <header>
-  <h1>ISTQB Advanced Test Manager Coach</h1>
-  <p>Practice questions for the ISTQB Advanced Level Test Manager certification</p>
+  <h1>ISTQB Coach</h1>
+  <p id="header-subtitle">Practice questions for the ISTQB Advanced Level Test Manager certification</p>
   <div class="toolbar">
+    <select id="cert-select" class="cert-select" onchange="onCertChange(this.value)">
+      <option value="ISTQB-A-TM"  selected>Advanced Test Manager</option>
+      <option value="ISTQB-A-TAE">Advanced Test Automation Engineer</option>
+      <option value="ISTQB-A-TA" >Advanced Test Analyst</option>
+      <option value="ISTQB-A-TTA">Advanced Technical Test Analyst</option>
+      <option value="ISTQB-FL"   >Foundation Level</option>
+    </select>
     <button class="btn btn-primary" onclick="triggerImport()">Import session (JSON)</button>
     <button class="btn btn-outline" id="btn-export" onclick="exportSession()" disabled>Save session (JSON)</button>
     <button class="btn btn-danger"  id="btn-reset"  onclick="resetSession()"    disabled>Reset session</button>
@@ -319,8 +339,8 @@
   <!-- empty state -->
   <div class="empty-state" id="empty-state">
     <h2>No questions loaded</h2>
-    <p>Import a JSON file to start practising, or load the built-in sample questions below.</p>
-    <button class="btn btn-primary" onclick="loadSample()">Load sample questions</button>
+    <p>Select a certification from the toolbar and click Load, or import a previously saved session.</p>
+    <button class="btn btn-primary" onclick="loadCert()">Load questions</button>
   </div>
 
   <!-- progress (hidden until questions loaded) -->
@@ -391,6 +411,15 @@ let answered    = {};      // { questionIndex: { chosen, correct } }
 let flagged     = {};      // { questionIndex: true }
 let sessionCorrect = 0;
 let sessionWrong   = 0;
+let currentCert = 'ISTQB-A-TM';
+
+const CERT_LABELS = {
+  'ISTQB-A-TM':  'Advanced Level Test Manager',
+  'ISTQB-A-TAE': 'Advanced Level Test Automation Engineer',
+  'ISTQB-A-TA':  'Advanced Level Test Analyst',
+  'ISTQB-A-TTA': 'Advanced Level Technical Test Analyst',
+  'ISTQB-FL':    'Foundation Level',
+};
 
 // ── Import / Export ────────────────────────────────────────────────────────
 function triggerImport() {
@@ -474,13 +503,32 @@ function restoreSession(session) {
   }
 }
 
-function loadSample() {
-  fetch('sample_questions.json')
+function onCertChange(cert) {
+  if (questions.length > 0) {
+    if (!confirm('Loading a new certification will reset your current session. Continue?')) {
+      document.getElementById('cert-select').value = currentCert;
+      return;
+    }
+  }
+  loadCert(cert);
+}
+
+function loadCert(cert) {
+  cert = cert || document.getElementById('cert-select').value;
+  currentCert = cert;
+  document.getElementById('cert-select').value = cert;
+  document.getElementById('header-subtitle').textContent =
+    `Practice questions for the ISTQB ${CERT_LABELS[cert]} certification`;
+  fetch(`${cert}.json`)
     .then(r => r.json())
     .then(data => loadQuestions(data))
     .catch(() => {
-      alert('Could not load sample_questions.json. Please use Import to load a questions file.');
+      alert(`Could not load ${cert}.json. Please use Import to load a questions file.`);
     });
+}
+
+function loadSample() {
+  loadCert('ISTQB-A-TM');
 }
 
 // ── Session management ─────────────────────────────────────────────────────
@@ -777,7 +825,7 @@ function updateStats() {
 }
 
 // ── Auto-load on startup ──────────────────────────────────────────────────
-loadSample();
+loadCert('ISTQB-A-TM');
 
 // ── Utility ────────────────────────────────────────────────────────────────
 function shuffle(arr) {

@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1,
+    "question": "When applying equivalence partitioning to test a field that accepts integer values between 1 and 100 inclusive, which of the following BEST represents the complete set of partitions?",
+    "options": [
+      "One valid partition (1–100) and one invalid partition (all other values)",
+      "One valid partition (1–100), one invalid partition below (≤ 0), and one invalid partition above (≥ 101)",
+      "Three valid partitions: low (1–33), mid (34–66), and high (67–100)",
+      "One valid partition (1–100) only, since invalid inputs need not be tested"
+    ],
+    "correct": 1,
+    "explanation": "TA - Equivalence partitioning divides input data into partitions where the software is expected to behave the same way. For a range of 1–100 there is one valid partition and two invalid partitions: values below the minimum (≤ 0) and values above the maximum (≥ 101). Testing one representative value from each partition is sufficient.",
+    "source_qnum": "1"
+  }
+]

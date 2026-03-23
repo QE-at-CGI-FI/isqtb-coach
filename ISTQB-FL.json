@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1,
+    "question": "Which of the following BEST describes the purpose of a test oracle?",
+    "options": [
+      "A tool used to generate test data and populate test environments automatically",
+      "A source of information used to determine whether a test has passed or failed",
+      "A document that describes the overall test strategy for a project",
+      "A person responsible for reviewing and approving test cases before execution"
+    ],
+    "correct": 1,
+    "explanation": "FL - A test oracle is any mechanism — human, document, system, or algorithm — that provides the expected outcome against which actual test results are compared, allowing a tester to determine whether a test has passed or failed.",
+    "source_qnum": "1"
+  }
+]
