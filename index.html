@@ -169,6 +169,11 @@
       color: var(--text-muted);
       margin-bottom: 12px;
     }
+    .sample-star {
+      color: gold;
+      font-size: 0.85rem;
+      cursor: default;
+    }
 
     .question-text {
       font-size: 1.05rem;
@@ -569,6 +574,15 @@ function restartSession() {
 }
 
 // ── Question display ───────────────────────────────────────────────────────
+function setQuestionNumber(num, q) {
+  const el = document.getElementById('q-number');
+  let html = `Question ${num} of ${questions.length}`;
+  if (q.id >= 1 && q.id <= 61) {
+    html += ` <span class="sample-star" title="This question is from sample exam">&#9733;</span>`;
+  }
+  el.innerHTML = html;
+}
+
 function showNextQuestion() {
   if (queue.length === 0) {
     showCompletion();
@@ -580,8 +594,7 @@ function showNextQuestion() {
   const q    = questions[currentIdx];
   const num  = Object.keys(answered).length + 1;
 
-  document.getElementById('q-number').textContent =
-    `Question ${num} of ${questions.length}`;
+  setQuestionNumber(num, q);
   document.getElementById('q-text').textContent = q.question;
 
   const labels  = ['A', 'B', 'C', 'D', 'E', 'F'];
@@ -742,7 +755,7 @@ function renderQuestionAnswered() {
   const labels = ['A', 'B', 'C', 'D', 'E', 'F'];
   const num    = Object.keys(answered).length;
 
-  document.getElementById('q-number').textContent = `Question ${num} of ${questions.length}`;
+  setQuestionNumber(num, q);
   document.getElementById('q-text').textContent   = q.question;
 
   const optsCtr = document.getElementById('q-options');
