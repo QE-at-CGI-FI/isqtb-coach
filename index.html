@@ -539,6 +539,7 @@ function loadSample() {
 
 // ── Session management ─────────────────────────────────────────────────────
 function loadQuestions(data) {
+  clearSavedProgress();
   questions      = data;
   answered       = {};
   flagged        = {};
@@ -557,6 +558,7 @@ function loadQuestions(data) {
 
 function resetSession() {
   if (!confirm('Reset your progress and start over with the same questions?')) return;
+  clearSavedProgress();
   answered       = {};
   flagged        = {};
   previousIdx    = null;
@@ -669,6 +671,7 @@ function selectAnswer(chosenIdx) {
   if (isRight) sessionCorrect++; else sessionWrong++;
 
   showFeedback(isRight, q.explanation);
+  saveProgress();
 }
 
 function toggleMultiOption(btn) {
@@ -715,6 +718,7 @@ function submitMultiAnswer() {
   if (isRight) sessionCorrect++; else sessionWrong++;
 
   showFeedback(isRight, q.explanation);
+  saveProgress();
 }
 
 function showFeedback(isRight, explanation) {
@@ -739,6 +743,7 @@ function toggleFlag() {
     flagBtn.classList.add('flagged');
     flagBtn.textContent = '\u2691 Flagged';
   }
+  saveProgress();
 }
 
 function goBack() {
@@ -839,7 +844,71 @@ function updateStats() {
 }
 
 // ── Auto-load on startup ──────────────────────────────────────────────────
-loadCert('ISTQB-A-TM');
+// Try to restore last session from localStorage; fall back to fresh cert load.
+(function init() {
+  const certs = ['ISTQB-A-TM', 'ISTQB-A-TAE', 'ISTQB-A-TA', 'ISTQB-A-TTA', 'ISTQB-FL'];
+  // Find the most recently saved session across all certs
+  let best = null;
+  for (const c of certs) {
+    try {
+      const raw = localStorage.getItem(`istqb_session_${c}`);
+      if (!raw) continue;
+      const s = JSON.parse(raw);
+      if (!best || s.savedAt > best.savedAt) best = { cert: c, session: s };
+    } catch (e) {}
+  }
+  if (best && tryLoadFromStorage(best.cert)) return;
+  loadCert('ISTQB-A-TM');
+})();
+
+// ── localStorage persistence ───────────────────────────────────────────────
+function storageKey() {
+  return `istqb_session_${currentCert}`;
+}
+
+function saveProgress() {
+  if (questions.length === 0) return;
+  const queueToSave = (currentIdx !== null && !(currentIdx in answered))
+    ? [currentIdx, ...queue]
+    : [...queue];
+  const session = {
+    _sessionVersion: 1,
+    savedAt: new Date().toISOString(),
+    cert: currentCert,
+    questions,
+    answered,
+    flagged,
+    queue: queueToSave,
+    sessionCorrect,
+    sessionWrong
+  };
+  try {
+    localStorage.setItem(storageKey(), JSON.stringify(session));
+  } catch (e) {
+    // storage quota exceeded or unavailable — ignore
+  }
+}
+
+function clearSavedProgress() {
+  try { localStorage.removeItem(storageKey()); } catch (e) {}
+}
+
+function tryLoadFromStorage(cert) {
+  try {
+    const raw = localStorage.getItem(`istqb_session_${cert}`);
+    if (!raw) return false;
+    const session = JSON.parse(raw);
+    if (!Array.isArray(session.questions) || session.questions.length === 0) return false;
+    currentCert = cert;
+    document.getElementById('cert-select').value = cert;
+    document.getElementById('header-subtitle').textContent =
+      `Practice questions for the ISTQB ${CERT_LABELS[cert]} certification`;
+    restoreSession(session);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
 
 // ── Utility ────────────────────────────────────────────────────────────────
 function shuffle(arr) {
